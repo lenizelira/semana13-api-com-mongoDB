@@ -1,0 +1,24 @@
+{
+  "name": "semana13-api-com-mongodb",
+  "version": "1.0.0",
+  "description": "exercicio semana 13",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lenizelira/semana13-api-com-mongoDB.git"
+  },
+  "author": "Lenize Lira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lenizelira/semana13-api-com-mongoDB/issues"
+  },
+  "homepage": "https://github.com/lenizelira/semana13-api-com-mongoDB#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
+  }
+}
