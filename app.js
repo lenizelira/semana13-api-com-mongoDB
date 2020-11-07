@@ -5,10 +5,10 @@ const cors = require('cors')
 const database = require('./models/repository')
 database.connect()
 
-const maravilhosas = require('./routes/maravilhosas-routes')
+const games = require('./src/routes/gamesRoutes')
 
 app.use(cors())
 app.use(express.json())
-app.use('/', maravilhosas)
+app.use('/', games)
 
 module.exports = app;

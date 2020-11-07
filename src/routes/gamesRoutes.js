@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/maravilhosas-controller')
+const controller = require('../controllers/gamesController')
 
-router.get('/maravilhosas', controller.getMaravilhosas)
+router.get('/games', controller.getGames)
 
-router.post('/maravilhosas', controller.addMaravilhosa)
+router.post('/games', controller.addGame)
 
-router.get('/maravilhosas/:id', controller.getMaravilhosaById)
+router.get('/games/:id', controller.getGameById)
 
-router.put('/maravilhosas/:id', controller.updateMaravilhosa)
+router.put('/games/:id', controller.updateGame)
 
-router.delete('/maravilhosas/:id', controller.deleteMaravilhosa)
+router.delete('/games/:id', controller.deleteGame)
 
 module.exports = router;

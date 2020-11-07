@@ -1,7 +1,7 @@
 const fs = require('fs')
-let allData = require('../data/data.json')
+let allData = require('../data/games.json')
 
-const selectAllData = () => {
+const selectAllGames = () => {
     if(allData){
         return {error: null, data: allData}
     } else {
@@ -9,9 +9,9 @@ const selectAllData = () => {
     }
 }
 
-const selectDataById = (id) => {
-    const maravilhosaId = id
-    const dadoEncontrado = allData.find(item => item.id == maravilhosaId)
+const selectGameById = (id) => {
+    const gameId = id
+    const dadoEncontrado = allData.find(item => item.id == gameId)
     if (dadoEncontrado){
         return {error: null, data: dadoEncontrado}
     } else{
@@ -19,17 +19,17 @@ const selectDataById = (id) => {
     }
 }
 
-const insertData = (newMaravilhosa) => {
-    const maravilhosaFound = allData.find(maravilhosa => maravilhosa.name == newMaravilhosa.name) // recupero o filme que foi criei no array de filmes      
+const insertGame = (newGame) => {
+    const gameFound = allData.find(maravilhosa => maravilhosa.name == newGame.name) // recupero o filme que foi criei no array de filmes      
     
-    if (!newMaravilhosa.id) {
-        newMaravilhosa.id = Math.random().toString(36).substr(-8)
+    if (!newGame.id) {
+        newGame.id = Math.random().toString(36).substr(-8)
     }
  
-    if(maravilhosaFound) {
+    if(gameFound) {
        return {error: {message: "Ops, registro duplicado"}} 
     } else {
-        fs.writeFileSync('./src/data/data.json', JSON.stringify([...allData, newMaravilhosa]), 'utf8', (err) => {
+        fs.writeFileSync('./src/data/games.json', JSON.stringify([...allData, newGame]), 'utf8', (err) => {
             if (err) {
                 console.log(err)
             }
@@ -39,35 +39,35 @@ const insertData = (newMaravilhosa) => {
     }
 }
 
-const updateData = (id, dataToUpdate) => {
-    const maravilhosaId = id
-    const maravilhosaFound = allData.find(item => item.id == maravilhosaId) 
-    const maravilhosaIndex = allData.indexOf(maravilhosaFound) 
+const updateGame = (id, dataToUpdate) => {
+    const gameId = id
+    const gameFound = allData.find(item => item.id == gameId) 
+    const gameIndex = allData.indexOf(gameFound) 
 
-    if (maravilhosaIndex >= 0) { 
-        allData.splice(maravilhosaIndex, 1, dataToUpdate)
-        fs.writeFileSync('./src/data/data.json', JSON.stringify([allData]), 'utf8', (err) => {
+    if (gameIndex >= 0) { 
+        allData.splice(gameIndex, 1, dataToUpdate)
+        fs.writeFileSync('./src/data/games.json', JSON.stringify([allData]), 'utf8', (err) => {
             if (err) {
                 console.log(err)
             }
         })
 
-        return {error: null, data: selectDataById(id)}
+        return {error: null, data: selectGameById(id)}
     } else {
         return {error: {message: "Ops, não encontrei esse registro para poder alterá-lo"}, data: null}
     }
 }
 
-const deleteData = (id) => {
-    const maravilhosaId = id
-    const maravilhosaFound = allData.find(item => item.id == maravilhosaId) 
-    const maravilhosaIndex = allData.indexOf(maravilhosaFound) 
+const deleteGame = (id) => {
+    const gameId = id
+    const gameFound = allData.find(item => item.id == gameId) 
+    const gameIndex = allData.indexOf(gameFound) 
 
 
 
-    if (maravilhosaIndex >= 0) { 
-        allData.splice(maravilhosaIndex, 1)
-        fs.writeFileSync('./src/data/data.json', JSON.stringify([allData]), 'utf8', (err) => {
+    if (gameIndex >= 0) { 
+        allData.splice(gameIndex, 1)
+        fs.writeFileSync('./src/data/games.json', JSON.stringify([allData]), 'utf8', (err) => {
             if (err) {
                 console.log(err)
             }
@@ -79,9 +79,9 @@ const deleteData = (id) => {
 }
 
 module.exports = {
-    selectAllData, 
-    selectDataById, 
-    insertData, 
-    updateData, 
-    deleteData
+    selectAllGames, 
+    selectGameById, 
+    insertGame, 
+    updateGame, 
+    deleteGame
 }

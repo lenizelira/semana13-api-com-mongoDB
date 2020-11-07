@@ -1,7 +1,7 @@
 const mongoose =  require('mongoose')
 const Schema = mongoose.Schema
 
-const maravilhosaSchema = new Schema({
+const gameSchema = new Schema({
     _id:{
         type: mongoose.Schema.Types.ObjectId, //tipo de dado, apenas para id
         auto: true, //é autogerado?
@@ -15,39 +15,39 @@ const maravilhosaSchema = new Schema({
         type: String,
         required: true,
     },
-    photo:{
+    genre:{
         type: String,
         required: true
     },
-    subtitle:{
+    first_release_date:{
+        type: Number,
+        required: false
+    },
+    slug:{
         type: String,
         required: true
     },
-    about:{
+    summary:{
         type: String,
         required: true
     },
-    phrase:{
-        type: String,
-        required: true
-    },
-    history:[{
+    company:[{
         type: String,
         required: true
     }],
-    addedBy:{
+    cover:{
         type: String,
         required: true
     }
 },
 
 {
-    collection: "maravilhosa"
+    collection: "games"
     //versionKey: false
    
   }
 );
 
-const maravilhosaCollection = mongoose.model('maravilhosa', maravilhosaSchema)
+const gamesCollection = mongoose.model('games', gameSchema)
 
-module.exports = {maravilhosaCollection}
+module.exports = {gamesCollection}

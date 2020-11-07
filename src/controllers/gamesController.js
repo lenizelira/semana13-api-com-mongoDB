@@ -1,65 +1,65 @@
-//const { maravilhosaCollection } = require('../models/maravilhosaSchema')
+//const { gamesCollection } = require('../models/gamesSchema')
 const { response } = require('../app')
-const maravilhosaTeste = require('../models/maravilhosaSchema')
+const gamesTeste = require('../models/gamesSchema')
 
-const getMaravilhosas =  (req,res) => {
+const getGames =  (req,res) => {
     console.log(req.url)
-    maravilhosaTeste.maravilhosaCollection.find((error, maravilhosa) =>{
+    gamesTeste.maravilhosaCollection.find((error, games) =>{
         if(error){
             return res.status(500).send(error)
         }else{
-            return res.status(200).send(maravilhosa)
+            return res.status(200).send(games)
         }
     })
 }
 
-//getMaravilhosaById
-const getMaravilhosaById =  (req,res) => {
+//getGameById
+const getGameById =  (req,res) => {
    const idParam = req.params.id
-   maravilhosaTeste.maravilhosaCollection.findById(idParam, (error, maravilhosa) =>{
+   gamesTeste.gamesCollection.findById(idParam, (error, games) =>{
        if(error){
            return res.status(500).send(error)
        }else{
-           if(maravilhosa){
-               return res.status(200).send(maravilhosa)
+           if(games){
+               return res.status(200).send(games)
            }else{
-               return res.status(404).send("Maravilhosa não encontrada ;(")
+               return res.status(404).send("Game não encontrado ;(")
            }
        }
    })
 }
 
-//addMaravilhosa 
-const addMaravilhosa = (req,res) => {
+//addGame 
+const addGame = (req,res) => {
     console.log(req.url)
-    const maravilhosaBody = req.body
-    const maravilhosa = new maravilhosaTeste.maravilhosaCollection(maravilhosaBody)
+    const gamesBody = req.body
+    const games = new gamesTeste.gamesCollection(gamesBody)
 
-    maravilhosa.save((error) =>{
+    games.save((error) =>{
         if(error){
             return res.status(400).send(error)
         }else{
-            return res.status(201).send(maravilhosa)
+            return res.status(201).send(games)
         }
     })
 }
 
 
-//updateMaravilhosa 
-const updateMaravilhosa = (req, res) => {
+//updateGame 
+const updateGame = (req, res) => {
     const idParam = req.params.id
-    const maravilhosaBody = req.body
+    const gamesBody = req.body
     const novo = {new: true}
 
-    maravilhosaTeste.maravilhosaCollection.findByIdAndUpdate(
+    gamesTeste.gamesCollection.findByIdAndUpdate(
         idParam,
-        maravilhosaBody,
+        gamesBody,
         novo,
-        (error, maravilhosa) =>{
+        (error, games) =>{
             if(error){
                 return res.status(500).send(error)
-            }else if(maravilhosa){
-                return res.status(500).send(maravilhosa)
+            }else if(games){
+                return res.status(500).send(games)
             }else{
                 return res.sendStatus(404)
             }
@@ -69,15 +69,15 @@ const updateMaravilhosa = (req, res) => {
     
 }
 
-//deleteMaravilhosa
-const deleteMaravilhosa = (req, res) => {
+//deleteGame
+const deleteGame = (req, res) => {
     const idParam = req.params.id
-    maravilhosaTeste.maravilhosaCollection.findByIdAndDelete(idParam, (error, maravilhosa) =>{
+    gamesTeste.gamesCollection.findByIdAndDelete(idParam, (error, games) =>{
         if(error){
             return res.status(500).send(error)
         }else{
-            if(maravilhosa){
-                return res.status(200).send("A maravilhosa foi apagada")
+            if(games){
+                return res.status(200).send("O game foi apagado")
             }else{
                 return res.sendStatus(404)
             }
@@ -87,9 +87,9 @@ const deleteMaravilhosa = (req, res) => {
 }
 
 module.exports = {
-    getMaravilhosas, 
-    getMaravilhosaById, 
-    addMaravilhosa, 
-    updateMaravilhosa, 
-    deleteMaravilhosa 
+    getGames, 
+    getGameById, 
+    addGame, 
+    updateGame, 
+    deleteGame 
 }
